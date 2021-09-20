@@ -1,0 +1,183 @@
+\documentclass[12pt]{article}
+\usepackage{times} 			% use Times New Roman font
+
+\usepackage[margin=1in]{geometry}   % sets 1 inch margins on all sides
+\usepackage{hyperref}               % for URL formatting
+\usepackage[pdftex]{graphicx}       % So includegraphics will work
+\setlength{\parskip}{1em}           % skip 1em between paragraphs
+\usepackage{indentfirst}            % indent the first line of each paragraph
+\usepackage{datetime}
+\usepackage[small, bf]{caption}
+\usepackage{listings}               % for code listings
+\usepackage{xcolor}                 % for styling code
+\usepackage{multirow}
+
+%New colors defined below
+\definecolor{backcolour}{RGB}{246, 246, 246}   % 0xF6, 0xF6, 0xF6
+\definecolor{codegreen}{RGB}{16, 124, 2}       % 0x10, 0x7C, 0x02
+\definecolor{codepurple}{RGB}{170, 0, 217}     % 0xAA, 0x00, 0xD9
+\definecolor{codered}{RGB}{154, 0, 18}         % 0x9A, 0x00, 0x12
+
+%Code listing style named "gcolabstyle" - matches Google Colab
+\lstdefinestyle{gcolabstyle}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{backcolour},   
+  commentstyle=\itshape\color{codegreen},
+  keywordstyle=\color{codepurple},
+  stringstyle=\color{codered},
+  numberstyle=\ttfamily\footnotesize\color{darkgray}, 
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+\lstset{style=gcolabstyle}      %set gcolabstyle code listing
+
+% to make long URIs break nicely
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+% for fancy page headings
+\usepackage{fancyhdr}
+\setlength{\headheight}{13.6pt} % to remove fancyhdr warning
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small \thepage}
+\lhead{\small HW1, Prajapati}  % EDIT THIS, REPLACE # with HW number
+\chead{\small CS 532, Fall 2021} 
+
+%-------------------------------------------------------------------------
+\begin{document}
+
+% EDIT THE ITEMS HERE
+\begin{centering}
+{\large\textbf{HW1 - Web Science Intro}}\\ 
+Robin Prajapati\\
+09/19/2021\\
+\end{centering}
+
+%-------------------------------------------------------------------------
+
+% The * after \section just says to not number the sections
+\section*{Q1}
+
+\subsection*{Answer}
+
+
+
+\begin{figure}[h]
+    \centering
+    % trim and clip are used to crop the image, trim=left bottom right top
+    % width sets max width, height will be scaled appropriately
+    \includegraphics[trim=0 0 0 0, clip, width=\textwidth] {Q1_1.jpg}
+    \caption{ Directed graph showing how the nodes are connected to each other}
+    \label{fig:web-growth}
+\end{figure}
+
+\emph{Tendrils: Pages that cannot reach the SCC and cannot be reached from the SCC.
+Pages that can only be reached from IN, or can only reach OUT. In our case, N is only reach OUT.
+}
+
+\emph{Tubes: Connects a TENDRIL hanging off from IN to a TENDRIL leading into OUT (a passage from a portion of IN to a portion of OUT without touching SCC). Pages that have in-links from IN or other pages in Tubes and out-links to pages in Tubes or OUT.}
+
+
+
+\end{lstlisting}
+
+
+
+
+\section*{Q2}
+
+\emph
+Demonstrate that you know how to use curl and are familiar with the available options.
+
+URI to request: http://www.cs.odu.edu/~mweigle/courses/cs532/ua_echo.php
+
+a) First, load the URI directly in your browser and take a screenshot. The resulting webpage should show the "User-Agent" HTTP request header that your web browser sends to the web server.
+
+b) In a single curl command, request the URI, show the HTTP response headers, follow any redirects, and change the User-Agent HTTP request field to "CS432/532". Show command you used and the result of your execution on the command line. (Either take a screenshot of your terminal or copy/paste into a code segment.)
+
+c) In a single curl command, request the URI, follow any redirects, change the User-Agent HTTP request field to "CS432/532", and save the HTML output to a file. Show the command you used and the result of your execution on the command line. View the HTML output file that was produced by curl in a web browser and take a screenshot.
+
+Explain the results you get for each of these steps.
+
+
+\subsection*{Answer}
+
+\begin{figure}
+    \centering
+    % trim and clip are used to crop the image, trim=left bottom right top
+    % width sets max width, height will be scaled appropriately
+    \includegraphics[trim=0 20 10 50, clip, width=\textwidth] {Q2_1.png}
+    \caption{Webpage shows the "User-Agent" HTTP request header that your web browser sends to the web server}
+    \label{fig:web-growth}
+\end{figure}
+
+\begin{figure}
+    \centering
+    % trim and clip are used to crop the image, trim=left bottom right top
+    % width sets max width, height will be scaled appropriately
+    \includegraphics[trim=0 20 10 50, clip, width=\textwidth] {Q2_2.png}
+    \caption{Requested the URI which shows the HTTP response headers, follow any redirects, and changed User-Agent HTTP request field to "CS432/532".}
+    \label{fig:web-growth}
+\end{figure}
+
+
+
+\begin{figure}
+   
+%Curl command used
+\begin{lstlisting}[language=Python, caption=Python example copied into the LaTeX, label=lst:copy]
+> curl -L --user-agent "CS432/532" https://www.cs.odu.edu/\~mweigle/courses/cs532/ua_echo.php -o curlFileChanged.html
+
+\end{lstlisting}
+    \centering
+    % trim and clip are used to crop the image, trim=left bottom right top
+    % width sets max width, height will be scaled appropriately
+    \includegraphics[trim=0 20 10 50, clip, width=\textwidth] {Q2_3.png}
+    \caption{Requested the URI which follow any redirects and changed the User-Agent HTTP request field to "CS432/532", and saved the HTML output to a file.}
+    \label{fig:web-growth}
+\end{figure}
+
+
+\section*{Q3}
+
+\subsection*{Answer}
+
+\begin{figure}[h]
+    \centering
+    % trim and clip are used to crop the image, trim=left bottom right top
+    % width sets max width, height will be scaled appropriately
+    \includegraphics[trim=0 20 10 50, clip, width=\textwidth] {HW1.png}
+    \caption{Program to prints the links from the pdf using Python}
+    \label{fig:web-growth}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    % trim and clip are used to crop the image, trim=left bottom right top
+    % width sets max width, height will be scaled appropriately
+    \includegraphics[trim=0 20 10 50, clip, width=\textwidth] {HW1_output.png}
+    \caption{Output}
+    \label{fig:web-growth}
+\end{figure}
+
+\section*{References}
+
+\begin{itemize}
+    \item {Reference 1, \url{https://docs.python-requests.org/en/v0.8.4/api/}}
+    \item {Reference 2, \url{https://developers.google.com/edu/python/regular-expressions}}
+\end{itemize}
+
+
+\end{document}
+
